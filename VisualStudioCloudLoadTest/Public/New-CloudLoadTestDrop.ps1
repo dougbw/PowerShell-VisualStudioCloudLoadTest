@@ -35,7 +35,7 @@ Param(
     Write-Verbose ("Test Drop Id = '{0}', drop container url = '{1}'" -f $Response.Id, $Response.accessData.dropContainerUrl)
 
     $DropContainerUrl = $Response.accessData.dropContainerUrl -split '/'
-    Return @{
+    Return [pscustomobject][ordered]@{
         ContainerName = $DropContainerUrl[3]
         Id = $DropContainerUrl[4]
         dropContainerUrl = $Response.accessData.dropContainerUrl

@@ -51,7 +51,7 @@ Param(
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-PassedRequests' value='{0}']" -f $Response.overallRequestSummary.passedRequests )
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-FailedRequests' value='{0}']" -f $Response.overallRequestSummary.failedRequests )
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-AverageResponseTime' value='{0}']" -f ($Response.overallRequestSummary.averageResponseTime * 1000) )
-            Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-RequestsPerSec' value='{0}']" -f $Response.overallRequestSummary.requestsPerSec )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-RequestsPerSec' value='{0}']" -f [math]::Round($Response.overallRequestSummary.requestsPerSec,1) )
 
             # Output overallTestSummary
             Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-TotalTests' value='{0}']" -f $Response.overallTestSummary.totalTests )

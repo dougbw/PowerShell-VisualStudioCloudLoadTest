@@ -81,14 +81,19 @@ Param(
 
             $Results += [pscustomobject]$Result
 
-            if ($OutputTeamCityServiceMessages -eq $True){
-                Write-Host ("##teamcity[buildStatisticValue key='{0}-Average' value='{1}']" -f $CounterInstance.counterName, $Result.Average )
-                Write-Host ("##teamcity[buildStatisticValue key='{0}-Minimum' value='{1}']" -f $CounterInstance.counterName, $Result.Minimum )
-                Write-Host ("##teamcity[buildStatisticValue key='{0}-Maximum' value='{1}']" -f $CounterInstance.counterName, $Result.Maximum )
-                Write-Host ("##teamcity[buildStatisticValue key='{0}-Sum' value='{1}']" -f $CounterInstance.counterName, $Result.Sum )
-            }
+
 
         }
+
+        if ($OutputTeamCityServiceMessages -eq $True){
+            foreach ($Result in $Results){
+                Write-Host ("##teamcity[buildStatisticValue key='{0}-Average' value='{1}']" -f $Result.counterName, $Result.Average )
+                Write-Host ("##teamcity[buildStatisticValue key='{0}-Minimum' value='{1}']" -f $Result.counterName, $Result.Minimum )
+                Write-Host ("##teamcity[buildStatisticValue key='{0}-Maximum' value='{1}']" -f $Result.counterName, $Result.Maximum )
+                Write-Host ("##teamcity[buildStatisticValue key='{0}-Sum' value='{1}']" -f $Result.counterName, $Result.Sum )
+            }
+        }
+
         $Results | Format-Table -Property CounterName, Average, Minimum, Maximum, Sum | Out-String | Write-Verbose
         Return $Results
 

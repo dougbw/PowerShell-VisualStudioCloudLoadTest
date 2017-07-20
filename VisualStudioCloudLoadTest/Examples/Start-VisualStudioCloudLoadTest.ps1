@@ -31,14 +31,18 @@ Param(
     [Parameter(Mandatory = $True)]
     [ValidateNotNullOrEmpty()]
     [string]
-    $VisualStudioAccountPersonalAccessToken
+    $VisualStudioAccountPersonalAccessToken,
+
+    [Parameter(Mandatory = $False)]
+    [bool]
+    $OutputTeamCityServiceMessages = $True
 )
 
 try{
 
     Import-Module -Name VisualStudioCloudLoadTest -Force -ErrorAction Stop -Verbose:$false
 
-    Invoke-CloudLoadTest -LoadTestFileName $LoadTestFileName -LoadTestDescription $LoadTestDescription -TestDirectoryPath $TestDirectoryPath -VisualStudioAccountName $VisualStudioAccountName -VisualStudioAccountPersonalAccessToken $VisualStudioAccountPersonalAccessToken
+    Invoke-CloudLoadTest -LoadTestFileName $LoadTestFileName -LoadTestDescription $LoadTestDescription -TestDirectoryPath $TestDirectoryPath -VisualStudioAccountName $VisualStudioAccountName -VisualStudioAccountPersonalAccessToken $VisualStudioAccountPersonalAccessToken -OutputTeamCityServiceMessages $OutputTeamCityServiceMessages
 
 }
 catch{

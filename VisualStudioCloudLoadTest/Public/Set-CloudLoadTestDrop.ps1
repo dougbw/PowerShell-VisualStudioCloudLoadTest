@@ -21,7 +21,7 @@ Param(
     $BaseUri,
 
     [Parameter(Mandatory=$True)]
-    [hashtable]
+    [object]
     $TestDrop,
 
     [Parameter(Mandatory=$True)]

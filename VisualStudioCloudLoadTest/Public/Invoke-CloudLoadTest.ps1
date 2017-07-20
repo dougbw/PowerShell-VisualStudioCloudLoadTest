@@ -60,7 +60,10 @@ Param(
         Get-CloudLoadTestRun -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $TestRun.id -Verbose
 
         # Get counter samples
-        $CounterSamples = Get-CloudLoadTestRunCounterSamples -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $Testrun.id -OutputTeamCityServiceMessages $True -Verbose
+        $CounterSamples = Get-CloudLoadTestRunCounterSamples -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $Testrun.id -OutputTeamCityServiceMessages $OutputTeamCityServiceMessages -Verbose
+
+        # Get test summary
+        $TestSummary = Get-CloudLoadTestRunSummary -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $TestRun.id -OutputTeamCityServiceMessages $OutputTeamCityServiceMessages -Verbose
 
     }
     catch{

@@ -49,15 +49,20 @@ Param(
             # Output OverallRequestSummary
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-TotalRequests' value='{0}']" -f $Response.overallRequestSummary.totalRequests )
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-PassedRequests' value='{0}']" -f $Response.overallRequestSummary.passedRequests )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-FailedRequests' value='{0}']" -f $Response.overallRequestSummary.failedRequests )
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-AverageResponseTime' value='{0}']" -f $Response.overallRequestSummary.averageResponseTime )
             Write-Host ("##teamcity[buildStatisticValue key='OverallRequestSummary-RequestsPerSec' value='{0}']" -f $Response.overallRequestSummary.requestsPerSec )
 
             # Output overallTestSummary
-            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-TotalRequests' value='{0}']" -f $Response.overallTestSummary.totalTests )
-            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-PassedRequests' value='{0}']" -f $Response.overallTestSummary.passedTests )
-            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-AverageResponseTime' value='{0}']" -f $Response.overallTestSummary.failedTests )
-            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-RequestsPerSec' value='{0}']" -f $Response.overallTestSummary.averageTestTime )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-TotalTests' value='{0}']" -f $Response.overallTestSummary.totalTests )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-PassedTests' value='{0}']" -f $Response.overallTestSummary.passedTests )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-FailedTests' value='{0}']" -f $Response.overallTestSummary.failedTests )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallTestSummary-AverageTestTime' value='{0}']" -f $Response.overallTestSummary.averageTestTime )
 
+            # Output overallPageSummary
+            Write-Host ("##teamcity[buildStatisticValue key='OverallPageSummary-TotalPages' value='{0}']" -f $Response.overallPageSummary.totalPages )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallPageSummary-PercentagePagesMeetingGoal' value='{0}']" -f $Response.overallPageSummary.percentagePagesMeetingGoal )
+            Write-Host ("##teamcity[buildStatisticValue key='OverallPageSummary-AveragePageTime' value='{0}']" -f $Response.overallPageSummary.averagePageTime )
 
         }
 

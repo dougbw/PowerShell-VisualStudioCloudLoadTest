@@ -64,8 +64,8 @@ Param(
             ($Timer.Elapsed.TotalMinutes -gt $TimeoutMinutes)
         )
 
-        Get-CloudLoadTestRunMessages -Headers $Headers -BaseUri $BaseUri -TestRunId $TestRunId | Write-Verbose
-        Get-CloudLoadTestRunErrors -Headers $Headers -BaseUri $BaseUri -TestRunId $TestRunId | Write-Warning
+        Get-CloudLoadTestRunMessages -Headers $Headers -BaseUri $BaseUri -TestRunId $TestRunId
+        Get-CloudLoadTestRunErrors -Headers $Headers -BaseUri $BaseUri -TestRunId $TestRunId
 
         switch ($Response.state){
             "aborted"{

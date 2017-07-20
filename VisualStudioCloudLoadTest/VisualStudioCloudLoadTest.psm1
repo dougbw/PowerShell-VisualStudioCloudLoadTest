@@ -1,4 +1,13 @@
-Get-ChildItem -Path "$PSScriptRoot\Public" -Filter "*.ps1" -Recurse | Where {$_.Name -notlike "*tests*"} |
-ForEach-Object {
-    . $_.FullName
+$Public  = Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 | Where {$_.Name -notlike "*tests*"}
+$Private = Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 | Where {$_.Name -notlike "*tests*"}
+
+foreach($file in ($Public + $Private)){
+    try{
+        . $file.fullname
+    }
+    catch{
+        throw $_
+    }
 }
+
+Export-ModuleMember -Function $Public.Basename

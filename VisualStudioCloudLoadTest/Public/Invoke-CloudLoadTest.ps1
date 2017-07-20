@@ -41,6 +41,8 @@ Param(
 
     try{
 
+        Set-PSConsoleForTeamCity
+
         # Get auth headers
         $Auth = Get-CloudLoadTestAuthHeaders -VisualStudioAccountName $VisualStudioAccountName -VisualStudioAccountPersonalAccessToken $VisualStudioAccountPersonalAccessToken -Verbose
 

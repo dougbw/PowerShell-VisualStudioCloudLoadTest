@@ -22,7 +22,11 @@ Param(
 
     [Parameter(Mandatory=$True)]
     [guid]
-    $TestRunId
+    $TestRunId,
+
+    [Parameter(Mandatory = $False)]
+    [bool]
+    $OutputTeamCityServiceMessages = $True
 
 )
 
@@ -45,6 +49,9 @@ Param(
 
                 "critical"{
                     Write-Error ("{0}" -f $Message.message)
+                    if ($OutputTeamCityServiceMessages -eq $True){
+                        Write-Host ("##teamcity[buildProblem description='{0}']" -f (Escape-TeamCityServiceMessageString -InputString $Message.message) )
+                    }
                 }
 
                 default{

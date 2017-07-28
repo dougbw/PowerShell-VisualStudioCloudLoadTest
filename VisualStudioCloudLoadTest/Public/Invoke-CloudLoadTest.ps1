@@ -50,7 +50,7 @@ Param(
         $TestDrop = New-CloudLoadTestDrop -Headers $Auth.Headers -BaseUri $Auth.BaseUri -Verbose
     
         # Publish files to test drop container
-        Set-CloudLoadTestDrop -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestDrop $TestDrop -TestDirectoryPath $TestDirectoryPath -LoadTestFileName $LoadTestFileName -Verbose
+        Set-CloudLoadTestDrop -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestDrop $TestDrop -TestDirectoryPath $TestDirectoryPath -LoadTestFileName $LoadTestFileName -LoadTestDescription $LoadTestDescription -Verbose
 
         # Create the test run
         $TestRun = New-CloudLoadTestRun -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestDrop $TestDrop -LoadTestFileName $LoadTestFileName -LoadTestDescription $LoadTestDescription -Verbose
@@ -59,7 +59,7 @@ Param(
         Start-CloudLoadTestRun -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $TestRun.id -Verbose
 
         # Wait for run to complete
-        Get-CloudLoadTestRun -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $TestRun.id -Verbose
+        Get-CloudLoadTestRun -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $TestRun.id -OutputTeamCityServiceMessages $OutputTeamCityServiceMessages -Verbose 
 
         # Get counter samples
         $CounterSamples = Get-CloudLoadTestRunCounterSamples -Headers $Auth.Headers -BaseUri $Auth.BaseUri -TestRunId $Testrun.id -OutputTeamCityServiceMessages $OutputTeamCityServiceMessages -Verbose

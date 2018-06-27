@@ -36,12 +36,13 @@ Param(
 
         foreach ($Type in $Response.types){
             foreach ($SubType in $Type.subTypes){
-                foreach ($ErrorDetailList in $SubType.errorDetailList){
-                    Write-Error ("Occurrences = {0}, Message = {1}" -f $ErrorDetailList.occurrences, $ErrorDetailList.messageText)
-                    if ($OutputTeamCityServiceMessages -eq $True){
-                        Write-Host ("##teamcity[buildProblem description='{0}-{1}-{2}']" -f $Type.typeName, $SubType.subTypeName, (Escape-TeamCityServiceMessageString -InputString $ErrorDetailList.messageText) )
+                if (-not $SubType.subTypeName -eq "LoadTestRequestUrlsExceededException") {
+                    foreach ($ErrorDetailList in $SubType.errorDetailList){
+                        Write-Error ("Occurrences = {0}, Message = {1}" -f $ErrorDetailList.occurrences, $ErrorDetailList.messageText)
+                        if ($OutputTeamCityServiceMessages -eq $True){
+                            Write-Host ("##teamcity[buildProblem description='{0}-{1}-{2}']" -f $Type.typeName, $SubType.subTypeName, (Escape-TeamCityServiceMessageString -InputString $ErrorDetailList.messageText) )
+                        }
                     }
-        
                 }
             }
         }
